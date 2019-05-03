@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static EnigmaMachine.EnigmaMachine;
 
 namespace EnigmaMachine
 {
@@ -13,13 +14,17 @@ namespace EnigmaMachine
     /// </summary>
     public partial class Rotor
     {
-        protected string CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        protected Dictionary<int, int> Mapping;
-        protected Dictionary<int, int> ReverseMapping;
+        protected string Mapping;
 
-        protected int Offset;
+        public int Offset
+        {
+            get;
+            protected set;
+        }
 
-        public Rotor(string mapping)
+        protected string Notch;
+
+        public Rotor(string mapping, string notch = "Z")
         {
             if (mapping.Length != CHARACTERS.Length)
                 throw new EnigmaRulesException("Invalid mapping for Rotor.");
@@ -29,25 +34,8 @@ namespace EnigmaMachine
                     throw new EnigmaRulesException("Invalid mapping for Rotor.");
             }
 
-            for(int i = 0; i < 26; i++)
-            {
-                int j = CHARACTERS.IndexOf(mapping[i]);
-                Mapping.Add(i, j);
-                ReverseMapping.Add(j, i);
-            }
-        }
-
-        public Rotor(int offset = 0)
-        {
-            Mapping = new Dictionary<int, int>();
-            ReverseMapping = new Dictionary<int, int>();
-            for(int i = 0; i < 26; i++)
-            {
-                Mapping.Add(i, (i + 1) % 26);
-                ReverseMapping.Add((i + 1) % 26, i);
-            }
-
-            Offset = offset % 26;
+            Mapping = mapping;
+            Notch = notch;
         }
 
         /// <summary>
@@ -58,7 +46,7 @@ namespace EnigmaMachine
         public char In(char ch)
         {
             int i = (CHARACTERS.IndexOf(ch) + Offset) % 26;
-            return CHARACTERS[Mapping[i]];
+            return Mapping[i];
         }
 
         /// <summary>
@@ -68,23 +56,41 @@ namespace EnigmaMachine
         /// <returns></returns>
         public char Out(char ch)
         {
-            int j = (CHARACTERS.IndexOf(ch) + Offset) % 26;
-            return CHARACTERS[ReverseMapping[j]];
+            int j = (Mapping.IndexOf(ch) - Offset + 26) % 26;
+            return CHARACTERS[j];
         }
 
         /// <summary>
         /// Increment this Rotor.
+        /// Returns true if the rotor rolled over.
         /// </summary>
         /// <returns>True if this rotor rolled over</returns>
         public bool Increment()
         {
-            if(++Offset >= 26)
+            bool rollover = Notch.Contains(CHARACTERS[Offset]);
+            Offset = (++Offset) % 26;
+            
+            return rollover;
+        }
+
+        /// <summary>
+        /// Set the position of this rotor.  
+        /// This may trigger a rotation (if you choose to implement it!).
+        /// </summary>
+        /// <param name="ch"></param>
+        /// <returns>True if the notch has been passed.</returns>
+        public bool SetPosition(char ch)
+        {
+            if (!CHARACTERS.Contains(ch)) throw new EnigmaRulesException("Invalid character to set position.");
+
+            int i = CHARACTERS.IndexOf(ch);
+            bool rollover = false;
+            while(Offset != i)
             {
-                Offset = 0;
-                return true;
+                rollover = rollover || this.Increment();
             }
 
-            return false;
+            return rollover;
         }
     }
 }

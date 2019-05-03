@@ -36,29 +36,56 @@ namespace EnigmaMachine
         #endregion
 
         #region WWII German Military
+        /// <summary>
+        /// Triggers turnover at Q
+        /// </summary>
         public static Rotor I =>
-            new Rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ");
+            new Rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ", "Q");
 
+        /// <summary>
+        /// Triggers turnover at E
+        /// </summary>
         public static Rotor II =>
-            new Rotor("AJDKSIRUXBLHWTMCQGZNPYFVOE");
+            new Rotor("AJDKSIRUXBLHWTMCQGZNPYFVOE", "E");
 
+        /// <summary>
+        /// Triggers turnover at V
+        /// </summary>
         public static Rotor III =>
-            new Rotor("BDFHJLCPRTXVZNYEIWGAKMUSQO");
+            new Rotor("BDFHJLCPRTXVZNYEIWGAKMUSQO", "V");
 
+        /// <summary>
+        /// Triggers turnover at J
+        /// </summary>
         public static Rotor IV =>
-            new Rotor("ESOVPZJAYQUIRHXLNFTGKDCMWB");
+            new Rotor("ESOVPZJAYQUIRHXLNFTGKDCMWB", "J");
 
+        /// <summary>
+        /// Triggers turnover at Z
+        /// </summary>
         public static Rotor V =>
             new Rotor("VZBRGITYUPSDNHLXAWMJQOFECK");
-
+        
+        /// <summary>
+        /// Triggers turnover at Z and M
+        /// (Actually weakend the encryption!)
+        /// </summary>
         public static Rotor VI =>
-            new Rotor("JPGVOUMFYQBENHZRDKASXLICTW");
+            new Rotor("JPGVOUMFYQBENHZRDKASXLICTW", "ZM");
 
+        /// <summary>
+        /// Triggers turnover at Z and M
+        /// (Actually weakend the encryption!)
+        /// </summary>
         public static Rotor VII =>
-            new Rotor("NZJHGRCXMYSWBOUFAIVLPEKQDT");
+            new Rotor("NZJHGRCXMYSWBOUFAIVLPEKQDT", "ZM");
 
+        /// <summary>
+        /// Triggers turnover at Z and M
+        /// (Actually weakend the encryption!)
+        /// </summary>
         public static Rotor VIII =>
-            new Rotor("FKQHTLXOCBJSPDZRAMEWNIUYGV");
+            new Rotor("FKQHTLXOCBJSPDZRAMEWNIUYGV", "ZM");
 
         #endregion
 

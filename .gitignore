@@ -1,6 +1,4 @@
 
 *.lock
-.vs/EnigmaMachine/v16/.suo
-.vs/EnigmaMachine/v16/Server/sqlite3/storage.ide
-.vs/EnigmaMachine/v16/Server/sqlite3/storage.ide-shm
-.vs/EnigmaMachine/v16/Server/sqlite3/storage.ide-wal
+.vs/*
+EnigmaMachine/obj/*

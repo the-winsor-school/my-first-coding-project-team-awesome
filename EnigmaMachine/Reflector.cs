@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static EnigmaMachine.EnigmaMachine;
 
 namespace EnigmaMachine
 {
@@ -10,16 +11,12 @@ namespace EnigmaMachine
     /// <summary>
     /// A reflector is (logically speaking) a rotor that does not rotate.
     /// </summary>
-    public class Reflector
+    public partial class Reflector
     {
-        private Dictionary<char, char> Mapping;
-        protected Dictionary<char, char> ReverseMapping;
-        protected static string CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        protected string Mapping;
 
         public Reflector(string mapping)
         {
-            Mapping = new Dictionary<char, char>();
-            ReverseMapping = new Dictionary<char, char>();
             if (mapping.Length != CHARACTERS.Length)
                 throw new EnigmaRulesException("Invalid mapping for Rotor.");
             foreach (char ch in CHARACTERS)
@@ -28,12 +25,13 @@ namespace EnigmaMachine
                     throw new EnigmaRulesException("Invalid mapping for Rotor.");
             }
 
-            for (int i = 0; i < 26; i++)
-            {
-                int j = CHARACTERS.IndexOf(mapping[i]);
-                Mapping.Add(CHARACTERS[i], CHARACTERS[j]);
-                ReverseMapping.Add(CHARACTERS[j], CHARACTERS[i]);
-            }
+            Mapping = mapping;
+        }
+
+        public char Reflect(char ch)
+        {
+            int i = CHARACTERS.IndexOf(ch);
+            return Mapping[i];
         }
     }
 }
