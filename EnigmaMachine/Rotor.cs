@@ -22,10 +22,32 @@ namespace EnigmaMachine
             protected set;
         }
 
+        public string Number
+        {
+            get;
+            protected set;
+        }
+
         protected string Notch;
 
-        public Rotor(string mapping, string notch = "Z")
+        public override string ToString()
         {
+            string output = string.Format("Rotor {0} [{1}]:  ", Number, CHARACTERS[Offset]);
+
+            for (int i = 0; i < 26; i++)
+            {
+                output += Mapping[i];
+
+                if (Notch.Contains(CHARACTERS[i]))
+                    output += "^";
+            }
+
+            return output;
+        }
+
+        public Rotor(string mapping, string notch = "Z", string name = "")
+        {
+            Number = name;
             if (mapping.Length != CHARACTERS.Length)
                 throw new EnigmaRulesException("Invalid mapping for Rotor.");
             foreach(char ch in CHARACTERS)

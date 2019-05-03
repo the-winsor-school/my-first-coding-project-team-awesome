@@ -15,6 +15,11 @@ namespace EnigmaMachine
     {
         protected string Mapping;
 
+        public override string ToString()
+        {
+            return string.Format("Reflector:  {0}", Mapping);
+        }
+
         public Reflector(string mapping)
         {
             if (mapping.Length != CHARACTERS.Length)

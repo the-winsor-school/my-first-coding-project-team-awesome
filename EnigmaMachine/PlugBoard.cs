@@ -15,6 +15,25 @@ namespace EnigmaMachine
     {
         private Dictionary<char, char> Mapping;
 
+        public override string ToString()
+        {
+            string output = "";
+            bool first = true;
+            string hit = "";
+            foreach(char ch in Mapping.Keys)
+            {
+                if(ch != Mapping[ch] && !hit.Contains(ch))
+                {
+                    output += string.Format("{0}{1}-{2}", first ? "PlugBoard:  " : ", ", ch, Mapping[ch]);
+                    hit += Mapping[ch];
+                    hit += ch;
+                    first = false;
+                }
+            }
+            
+            return output;
+        }
+
         public PlugBoard()
         {
             Mapping = new Dictionary<char, char>();

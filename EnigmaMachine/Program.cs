@@ -10,7 +10,7 @@ namespace EnigmaMachine
     {
         static void Main(string[] args)
         {
-            EnigmaMachine enigmaMachine = new EnigmaMachine(Rotor.III, Rotor.VI, Rotor.I, reflector: Reflector.A);
+            EnigmaMachine enigmaMachine = new EnigmaMachine(Rotor.VIII, Rotor.VI, Rotor.II, reflector: Reflector.C);
 
             enigmaMachine.PlugBoard.Plug('A', 'T');
             enigmaMachine.PlugBoard.Plug('E', 'Y');
@@ -20,6 +20,8 @@ namespace EnigmaMachine
             enigmaMachine.Rotors[0].SetPosition('K');
             enigmaMachine.Rotors[1].SetPosition('F');
             enigmaMachine.Rotors[2].SetPosition('C');
+
+            Console.WriteLine(enigmaMachine);
 
             Console.Write("Enter a Message:  ");
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -35,7 +37,7 @@ namespace EnigmaMachine
             Console.ReadLine();
 
             // Emulate a second machine with the same settings
-            EnigmaMachine enigmaMachine2 = new EnigmaMachine(Rotor.III, Rotor.VI, Rotor.I, reflector: Reflector.A);
+            EnigmaMachine enigmaMachine2 = new EnigmaMachine(Rotor.VIII, Rotor.VI, Rotor.II, reflector: Reflector.C);
 
             enigmaMachine2.PlugBoard.Plug('A', 'T');
             enigmaMachine2.PlugBoard.Plug('E', 'Y');
