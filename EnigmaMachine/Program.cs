@@ -10,7 +10,7 @@ namespace EnigmaMachine
     {
         static void Main(string[] args)
         {
-            EnigmaMachine enigmaMachine = new EnigmaMachine(Rotor.VIII, Rotor.VI, Rotor.II, reflector: Reflector.C);
+            EnigmaMachine enigmaMachine = new EnigmaMachine(Rotor.VIII, Rotor.VI, Rotor.II, reflector: Reflector.ETW);
 
             enigmaMachine.PlugBoard.Plug('A', 'T');
             enigmaMachine.PlugBoard.Plug('E', 'Y');
@@ -20,6 +20,9 @@ namespace EnigmaMachine
             enigmaMachine.Rotors[0].SetPosition('K');
             enigmaMachine.Rotors[1].SetPosition('F');
             enigmaMachine.Rotors[2].SetPosition('C');
+            enigmaMachine.Rotors[0].RingSetting = 20;
+            enigmaMachine.Rotors[1].RingSetting = 2;
+            enigmaMachine.Rotors[2].RingSetting = 11;
 
             Console.WriteLine(enigmaMachine);
 
@@ -37,7 +40,7 @@ namespace EnigmaMachine
             Console.ReadLine();
 
             // Emulate a second machine with the same settings
-            EnigmaMachine enigmaMachine2 = new EnigmaMachine(Rotor.VIII, Rotor.VI, Rotor.II, reflector: Reflector.C);
+            EnigmaMachine enigmaMachine2 = new EnigmaMachine(Rotor.VIII, Rotor.VI, Rotor.II, reflector: Reflector.ETW);
 
             enigmaMachine2.PlugBoard.Plug('A', 'T');
             enigmaMachine2.PlugBoard.Plug('E', 'Y');
@@ -47,6 +50,9 @@ namespace EnigmaMachine
             enigmaMachine2.Rotors[0].SetPosition('K');
             enigmaMachine2.Rotors[1].SetPosition('F');
             enigmaMachine2.Rotors[2].SetPosition('C');
+            enigmaMachine2.Rotors[0].RingSetting = 20;
+            enigmaMachine2.Rotors[1].RingSetting = 2;
+            enigmaMachine2.Rotors[2].RingSetting = 11;
 
             string output = enigmaMachine2.Process(encrypted);
 

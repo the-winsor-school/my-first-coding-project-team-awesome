@@ -13,7 +13,7 @@ namespace EnigmaMachine
         /// Null Reflector. From the Comercial version of Engima I.
         /// </summary>
         public static Reflector ETW =>
-            new Reflector(CHARACTERS);
+            new Reflector(new string(CHARACTERS.Reverse().ToArray()));
 
         public static Reflector A =>
             new Reflector("EJMZALYXVBWFCRQUONTSPIKHGD");

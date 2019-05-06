@@ -27,6 +27,8 @@ namespace EnigmaMachine
             return output;
         }
 
+        public char EncodeSpacesAs;
+
         /// <summary>
         /// PlugBoard may be modified by the User.
         /// </summary>
@@ -44,6 +46,7 @@ namespace EnigmaMachine
 
         public EnigmaMachine(Rotor rotor1, Rotor rotor2, Rotor rotor3, Rotor rotor4 = null, Rotor rotor5 = null, Reflector reflector = null)
         {
+            EncodeSpacesAs = 'X';
             Rotors = new List<Rotor>() { rotor1, rotor2, rotor3 };
             if(rotor4 != null)
             {
@@ -106,7 +109,7 @@ namespace EnigmaMachine
 
         public string Process(string message)
         {
-            message = message.ToUpperInvariant();
+            message = message.ToUpperInvariant().Replace(' ', EncodeSpacesAs);
             string output = "";
             foreach(char ch in message)
             {

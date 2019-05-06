@@ -16,6 +16,8 @@ namespace EnigmaMachine
     {
         protected string Mapping;
 
+        public int RingSetting;
+
         public int Offset
         {
             get;
@@ -45,8 +47,9 @@ namespace EnigmaMachine
             return output;
         }
 
-        public Rotor(string mapping, string notch = "Z", string name = "")
+        public Rotor(string mapping, string notch = "Z", string name = "", ushort ringSetting = 0)
         {
+            RingSetting = ringSetting % 26;
             Number = name;
             if (mapping.Length != CHARACTERS.Length)
                 throw new EnigmaRulesException("Invalid mapping for Rotor.");
@@ -89,7 +92,7 @@ namespace EnigmaMachine
         /// <returns>True if this rotor rolled over</returns>
         public bool Increment()
         {
-            bool rollover = Notch.Contains(CHARACTERS[Offset]);
+            bool rollover = Notch.Contains(CHARACTERS[(Offset + RingSetting) % 26]);
             Offset = (++Offset) % 26;
             
             return rollover;
