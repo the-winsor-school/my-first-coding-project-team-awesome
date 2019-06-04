@@ -10,16 +10,20 @@ namespace EnigmaMachine
     {
         static void Main(string[] args)
         {
-            EnigmaMachine enigmaMachine = new EnigmaMachine(Rotor.VIII, Rotor.VI, Rotor.II, reflector: Reflector.ETW);
+            EnigmaMachine enigmaMachine = new EnigmaMachine(Rotor.VI, Rotor.I, Rotor.III, reflector: Reflector.ETW);
 
-            enigmaMachine.PlugBoard.Plug('A', 'T');
-            enigmaMachine.PlugBoard.Plug('E', 'Y');
-            enigmaMachine.PlugBoard.Plug('K', 'O');
-            enigmaMachine.PlugBoard.Plug('N', 'P');
+            // Plug in connections on the plug board
+            enigmaMachine.PlugBoard.Plug('Z', 'T');
+            enigmaMachine.PlugBoard.Plug('N', 'Y');
+            enigmaMachine.PlugBoard.Plug('K', 'P');
+            enigmaMachine.PlugBoard.Plug('A', 'Q');
             
+            // set the Rotor Positions
             enigmaMachine.Rotors[0].SetPosition('K');
             enigmaMachine.Rotors[1].SetPosition('F');
             enigmaMachine.Rotors[2].SetPosition('C');
+            
+            // set the ring settings (changes the point where rotor rolls over the next rotor.
             enigmaMachine.Rotors[0].RingSetting = 20;
             enigmaMachine.Rotors[1].RingSetting = 2;
             enigmaMachine.Rotors[2].RingSetting = 11;
@@ -42,15 +46,15 @@ namespace EnigmaMachine
             // Emulate a second machine with the same settings
             EnigmaMachine enigmaMachine2 = new EnigmaMachine(Rotor.VIII, Rotor.VI, Rotor.II, reflector: Reflector.ETW);
 
-            enigmaMachine2.PlugBoard.Plug('A', 'T');
-            enigmaMachine2.PlugBoard.Plug('E', 'Y');
-            enigmaMachine2.PlugBoard.Plug('K', 'O');
-            enigmaMachine2.PlugBoard.Plug('N', 'P');
+            enigmaMachine2.PlugBoard.Plug('F', 'T');
+            enigmaMachine2.PlugBoard.Plug('N', 'Y');
+            enigmaMachine2.PlugBoard.Plug('G', 'P');
+            enigmaMachine2.PlugBoard.Plug('A', 'Q');
            
             enigmaMachine2.Rotors[0].SetPosition('K');
             enigmaMachine2.Rotors[1].SetPosition('F');
             enigmaMachine2.Rotors[2].SetPosition('C');
-            enigmaMachine2.Rotors[0].RingSetting = 20;
+            enigmaMachine2.Rotors[0].RingSetting = 22;
             enigmaMachine2.Rotors[1].RingSetting = 2;
             enigmaMachine2.Rotors[2].RingSetting = 11;
 
